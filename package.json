@@ -1,0 +1,21 @@
+{
+  "name": "satranc-kayit-formu",
+  "version": "1.0.0",
+  "description": "Satranç turnuvası kayıt formu - Gerçek satranç tahtası arka planı ile",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["satranç", "kayıt", "form", "chess"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
+

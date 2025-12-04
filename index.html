@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satranç Kayıt Formu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chess-board">
+        <div class="notation-top">
+            <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span>
+        </div>
+        <div class="notation-bottom">
+            <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span>
+        </div>
+        <div class="notation-left">
+            <span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span>
+        </div>
+        <div class="notation-right">
+            <span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span>
+        </div>
+        <div class="board-grid"></div>
+    </div>
+    <div class="chess-pieces-container"></div>
+    
+    <div class="form-container">
+        <h1>Satranç Turnuvası Kayıt</h1>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="firstName">İsim:</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="lastName">Soyisim:</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="className">Sınıf:</label>
+                <input type="text" id="className" name="className" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Telefon Numarası:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <button type="submit" class="submit-btn">Devam Et</button>
+        </form>
+        
+        <div id="successMessage" class="success-message hidden">
+            <h2>Kayıdınız başarılı bir şekilde alınmıştır. Şahınızı güzel bir şekilde koruyunuz.</h2>
+        </div>
+    </div>
+
+    <!-- Admin Butonu -->
+    <button id="adminBtn" class="admin-btn" title="Admin Paneli">⚙</button>
+
+    <!-- Admin Modal -->
+    <div id="adminModal" class="admin-modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="passwordSection">
+                <h2>Admin Paneli</h2>
+                <form id="passwordForm" class="password-form">
+                    <input type="password" id="adminPassword" class="password-input" placeholder="Şifre giriniz" required>
+                    <button type="submit" class="submit-btn">Giriş Yap</button>
+                    <div id="errorMessage" class="error-message hidden"></div>
+                </form>
+            </div>
+            
+            <div id="registrationsSection" class="hidden">
+                <h2>Kayıtlar</h2>
+                <div id="registrationsList"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+

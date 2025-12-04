@@ -1,0 +1,382 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+    background: #1a1a1a;
+    color: #000000;
+}
+
+/* Gerçek Satranç Tahtası */
+.chess-board {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f0d9b5;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.board-grid {
+    position: absolute;
+    width: 640px;
+    height: 640px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    border: 2px solid #333;
+    gap: 0;
+}
+
+.board-grid > div {
+    width: 100%;
+    height: 100%;
+}
+
+/* Cebirsel Notasyon */
+.notation-top,
+.notation-bottom {
+    position: absolute;
+    width: 640px;
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    z-index: 3;
+}
+
+.notation-top {
+    top: -30px;
+}
+
+.notation-bottom {
+    bottom: -30px;
+}
+
+.notation-left,
+.notation-right {
+    position: absolute;
+    width: 30px;
+    height: 640px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    z-index: 3;
+}
+
+.notation-left {
+    left: -30px;
+}
+
+.notation-right {
+    right: -30px;
+}
+
+.chess-pieces-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.chess-piece {
+    position: absolute;
+    font-size: 50px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 2s ease-in-out;
+    pointer-events: none;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    color: #000;
+}
+
+.form-container {
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    width: 90%;
+    margin: 50px auto;
+    border: 2px solid #333;
+}
+
+h1 {
+    text-align: center;
+    color: #000;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #666;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    background: #fff;
+    color: #000;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: #333;
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.success-message {
+    text-align: center;
+    padding: 30px;
+    background: #333;
+    color: #fff;
+    border-radius: 10px;
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-in;
+    border: 2px solid #000;
+}
+
+.success-message h2 {
+    font-size: 22px;
+    line-height: 1.6;
+    color: #fff;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Admin Butonu - Sağ Alt Köşe */
+.admin-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #333;
+    color: #fff;
+    border: 2px solid #000;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.admin-btn:hover {
+    background: #000;
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Admin Modal */
+.admin-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border: 3px solid #000;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+
+.modal-content h2 {
+    text-align: center;
+    color: #000;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.password-form {
+    text-align: center;
+}
+
+.password-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border: 2px solid #666;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 20px auto;
+    display: block;
+    background: #fff;
+    color: #000;
+}
+
+.error-message {
+    color: #d32f2f;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.registrations-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    border: 2px solid #333;
+}
+
+.registrations-table th,
+.registrations-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #666;
+    color: #000;
+}
+
+.registrations-table th {
+    background: #333;
+    color: #fff;
+    font-weight: 600;
+}
+
+.registrations-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.no-registrations {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .board-grid {
+        width: 90vw;
+        height: 90vw;
+        max-width: 500px;
+        max-height: 500px;
+    }
+    
+    .notation-top,
+    .notation-bottom {
+        width: 90vw;
+        max-width: 500px;
+    }
+    
+    .notation-left,
+    .notation-right {
+        height: 90vw;
+        max-height: 500px;
+    }
+    
+    .chess-piece {
+        font-size: 40px;
+        width: 60px;
+        height: 60px;
+    }
+}
+
